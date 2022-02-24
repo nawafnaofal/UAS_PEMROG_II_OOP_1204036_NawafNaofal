@@ -72,6 +72,12 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UpdateDaftarUlang.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UpdateDaftarUlang.Designer.cs">
+      <DependentUpon>UpdateDaftarUlang.cs</DependentUpon>
+    </Compile>
     <Compile Include="UpdateMahasiswa.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -83,6 +89,12 @@
     </Compile>
     <Compile Include="UpdateProdi.Designer.cs">
       <DependentUpon>UpdateProdi.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ViewDaftarUlang.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ViewDaftarUlang.Designer.cs">
+      <DependentUpon>ViewDaftarUlang.cs</DependentUpon>
     </Compile>
     <Compile Include="ViewMahasiswa.cs">
       <SubType>Form</SubType>
@@ -117,11 +129,17 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="UpdateDaftarUlang.resx">
+      <DependentUpon>UpdateDaftarUlang.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UpdateMahasiswa.resx">
       <DependentUpon>UpdateMahasiswa.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UpdateProdi.resx">
       <DependentUpon>UpdateProdi.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ViewDaftarUlang.resx">
+      <DependentUpon>ViewDaftarUlang.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ViewMahasiswa.resx">
       <DependentUpon>ViewMahasiswa.cs</DependentUpon>

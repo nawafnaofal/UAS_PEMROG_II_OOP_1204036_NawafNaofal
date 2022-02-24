@@ -45,16 +45,20 @@
             this.label15 = new System.Windows.Forms.Label();
             this.npm = new System.Windows.Forms.TextBox();
             this.nama_mhs = new System.Windows.Forms.TextBox();
-            this.kode_prodi = new System.Windows.Forms.TextBox();
+            this.nama_prodi = new System.Windows.Forms.TextBox();
             this.biaya_kuliah = new System.Windows.Forms.TextBox();
-            this.textBox4 = new System.Windows.Forms.TextBox();
-            this.textBox5 = new System.Windows.Forms.TextBox();
+            this.tbPotongan = new System.Windows.Forms.TextBox();
+            this.tbTotal = new System.Windows.Forms.TextBox();
             this.SubmitDaftar = new System.Windows.Forms.Button();
             this.ClearDaftar = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.radioButton3 = new System.Windows.Forms.RadioButton();
-            this.radioButton2 = new System.Windows.Forms.RadioButton();
-            this.radioButton1 = new System.Windows.Forms.RadioButton();
+            this.rbC = new System.Windows.Forms.RadioButton();
+            this.rbB = new System.Windows.Forms.RadioButton();
+            this.rbA = new System.Windows.Forms.RadioButton();
+            this.cariNPM = new System.Windows.Forms.Button();
+            this.biaya = new System.Windows.Forms.TextBox();
+            this.potong = new System.Windows.Forms.TextBox();
+            this.totall = new System.Windows.Forms.TextBox();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -62,7 +66,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(79, 38);
+            this.label1.Location = new System.Drawing.Point(110, 37);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(280, 25);
             this.label1.TabIndex = 3;
@@ -207,6 +211,7 @@
             this.npm.Name = "npm";
             this.npm.Size = new System.Drawing.Size(164, 20);
             this.npm.TabIndex = 19;
+            this.npm.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.npm_KeyPress);
             // 
             // nama_mhs
             // 
@@ -216,33 +221,46 @@
             this.nama_mhs.Size = new System.Drawing.Size(164, 20);
             this.nama_mhs.TabIndex = 20;
             // 
-            // kode_prodi
+            // nama_prodi
             // 
-            this.kode_prodi.Location = new System.Drawing.Point(231, 174);
-            this.kode_prodi.Name = "kode_prodi";
-            this.kode_prodi.Size = new System.Drawing.Size(164, 20);
-            this.kode_prodi.TabIndex = 21;
+            this.nama_prodi.Enabled = false;
+            this.nama_prodi.Location = new System.Drawing.Point(231, 174);
+            this.nama_prodi.Name = "nama_prodi";
+            this.nama_prodi.Size = new System.Drawing.Size(164, 20);
+            this.nama_prodi.TabIndex = 21;
             // 
             // biaya_kuliah
             // 
-            this.biaya_kuliah.Location = new System.Drawing.Point(231, 212);
+            this.biaya_kuliah.Enabled = false;
+            this.biaya_kuliah.Location = new System.Drawing.Point(186, 65);
             this.biaya_kuliah.Name = "biaya_kuliah";
+            this.biaya_kuliah.ReadOnly = true;
             this.biaya_kuliah.Size = new System.Drawing.Size(164, 20);
             this.biaya_kuliah.TabIndex = 22;
+            this.biaya_kuliah.Visible = false;
+            this.biaya_kuliah.TextChanged += new System.EventHandler(this.biaya_kuliah_TextChanged);
             // 
-            // textBox4
+            // tbPotongan
             // 
-            this.textBox4.Location = new System.Drawing.Point(231, 346);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(164, 20);
-            this.textBox4.TabIndex = 26;
+            this.tbPotongan.Enabled = false;
+            this.tbPotongan.Location = new System.Drawing.Point(312, 469);
+            this.tbPotongan.Name = "tbPotongan";
+            this.tbPotongan.ReadOnly = true;
+            this.tbPotongan.Size = new System.Drawing.Size(164, 20);
+            this.tbPotongan.TabIndex = 26;
+            this.tbPotongan.Visible = false;
+            this.tbPotongan.TextChanged += new System.EventHandler(this.tbPotongan_TextChanged);
             // 
-            // textBox5
+            // tbTotal
             // 
-            this.textBox5.Location = new System.Drawing.Point(231, 382);
-            this.textBox5.Name = "textBox5";
-            this.textBox5.Size = new System.Drawing.Size(164, 20);
-            this.textBox5.TabIndex = 27;
+            this.tbTotal.Enabled = false;
+            this.tbTotal.Location = new System.Drawing.Point(40, 470);
+            this.tbTotal.Name = "tbTotal";
+            this.tbTotal.ReadOnly = true;
+            this.tbTotal.Size = new System.Drawing.Size(164, 20);
+            this.tbTotal.TabIndex = 27;
+            this.tbTotal.Visible = false;
+            this.tbTotal.TextChanged += new System.EventHandler(this.tbTotal_TextChanged);
             // 
             // SubmitDaftar
             // 
@@ -252,6 +270,7 @@
             this.SubmitDaftar.TabIndex = 28;
             this.SubmitDaftar.Text = "Submit";
             this.SubmitDaftar.UseVisualStyleBackColor = true;
+            this.SubmitDaftar.Click += new System.EventHandler(this.SubmitDaftar_Click);
             // 
             // ClearDaftar
             // 
@@ -264,60 +283,101 @@
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.radioButton3);
-            this.groupBox1.Controls.Add(this.radioButton2);
-            this.groupBox1.Controls.Add(this.radioButton1);
+            this.groupBox1.Controls.Add(this.rbC);
+            this.groupBox1.Controls.Add(this.rbB);
+            this.groupBox1.Controls.Add(this.rbA);
             this.groupBox1.Location = new System.Drawing.Point(226, 239);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(164, 100);
             this.groupBox1.TabIndex = 30;
             this.groupBox1.TabStop = false;
             // 
-            // radioButton3
+            // rbC
             // 
-            this.radioButton3.AutoSize = true;
-            this.radioButton3.Location = new System.Drawing.Point(7, 72);
-            this.radioButton3.Name = "radioButton3";
-            this.radioButton3.Size = new System.Drawing.Size(32, 17);
-            this.radioButton3.TabIndex = 28;
-            this.radioButton3.TabStop = true;
-            this.radioButton3.Text = "C";
-            this.radioButton3.UseVisualStyleBackColor = true;
+            this.rbC.AutoSize = true;
+            this.rbC.Location = new System.Drawing.Point(7, 72);
+            this.rbC.Name = "rbC";
+            this.rbC.Size = new System.Drawing.Size(32, 17);
+            this.rbC.TabIndex = 28;
+            this.rbC.TabStop = true;
+            this.rbC.Text = "C";
+            this.rbC.UseVisualStyleBackColor = true;
+            this.rbC.CheckedChanged += new System.EventHandler(this.rbC_CheckedChanged);
             // 
-            // radioButton2
+            // rbB
             // 
-            this.radioButton2.AutoSize = true;
-            this.radioButton2.Location = new System.Drawing.Point(7, 44);
-            this.radioButton2.Name = "radioButton2";
-            this.radioButton2.Size = new System.Drawing.Size(32, 17);
-            this.radioButton2.TabIndex = 27;
-            this.radioButton2.TabStop = true;
-            this.radioButton2.Text = "B";
-            this.radioButton2.UseVisualStyleBackColor = true;
+            this.rbB.AutoSize = true;
+            this.rbB.Location = new System.Drawing.Point(7, 44);
+            this.rbB.Name = "rbB";
+            this.rbB.Size = new System.Drawing.Size(32, 17);
+            this.rbB.TabIndex = 27;
+            this.rbB.TabStop = true;
+            this.rbB.Text = "B";
+            this.rbB.UseVisualStyleBackColor = true;
+            this.rbB.CheckedChanged += new System.EventHandler(this.rbB_CheckedChanged);
             // 
-            // radioButton1
+            // rbA
             // 
-            this.radioButton1.AutoSize = true;
-            this.radioButton1.Location = new System.Drawing.Point(7, 15);
-            this.radioButton1.Name = "radioButton1";
-            this.radioButton1.Size = new System.Drawing.Size(32, 17);
-            this.radioButton1.TabIndex = 26;
-            this.radioButton1.TabStop = true;
-            this.radioButton1.Text = "A";
-            this.radioButton1.UseVisualStyleBackColor = true;
+            this.rbA.AutoSize = true;
+            this.rbA.Location = new System.Drawing.Point(7, 15);
+            this.rbA.Name = "rbA";
+            this.rbA.Size = new System.Drawing.Size(32, 17);
+            this.rbA.TabIndex = 26;
+            this.rbA.TabStop = true;
+            this.rbA.Text = "A";
+            this.rbA.UseVisualStyleBackColor = true;
+            this.rbA.CheckedChanged += new System.EventHandler(this.rbA_CheckedChanged);
+            // 
+            // cariNPM
+            // 
+            this.cariNPM.Location = new System.Drawing.Point(404, 98);
+            this.cariNPM.Name = "cariNPM";
+            this.cariNPM.Size = new System.Drawing.Size(75, 20);
+            this.cariNPM.TabIndex = 31;
+            this.cariNPM.Text = "Cari NPM";
+            this.cariNPM.UseVisualStyleBackColor = true;
+            this.cariNPM.Click += new System.EventHandler(this.cariNPM_Click);
+            // 
+            // biaya
+            // 
+            this.biaya.Enabled = false;
+            this.biaya.Location = new System.Drawing.Point(231, 213);
+            this.biaya.Name = "biaya";
+            this.biaya.Size = new System.Drawing.Size(164, 20);
+            this.biaya.TabIndex = 32;
+            // 
+            // potong
+            // 
+            this.potong.Enabled = false;
+            this.potong.Location = new System.Drawing.Point(231, 346);
+            this.potong.Name = "potong";
+            this.potong.Size = new System.Drawing.Size(164, 20);
+            this.potong.TabIndex = 33;
+            // 
+            // totall
+            // 
+            this.totall.Location = new System.Drawing.Point(231, 379);
+            this.totall.Name = "totall";
+            this.totall.Size = new System.Drawing.Size(164, 20);
+            this.totall.TabIndex = 34;
+            this.totall.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.totall_KeyPress);
             // 
             // DaftarUlang
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(454, 526);
+            this.ClientSize = new System.Drawing.Size(488, 526);
+            this.Controls.Add(this.totall);
+            this.Controls.Add(this.potong);
+            this.Controls.Add(this.biaya);
+            this.Controls.Add(this.cariNPM);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.ClearDaftar);
             this.Controls.Add(this.SubmitDaftar);
-            this.Controls.Add(this.textBox5);
-            this.Controls.Add(this.textBox4);
+            this.Controls.Add(this.tbTotal);
+            this.Controls.Add(this.tbPotongan);
             this.Controls.Add(this.biaya_kuliah);
-            this.Controls.Add(this.kode_prodi);
+            this.Controls.Add(this.nama_prodi);
             this.Controls.Add(this.nama_mhs);
             this.Controls.Add(this.npm);
             this.Controls.Add(this.label15);
@@ -363,15 +423,19 @@
         private System.Windows.Forms.Label label15;
         private System.Windows.Forms.TextBox npm;
         private System.Windows.Forms.TextBox nama_mhs;
-        private System.Windows.Forms.TextBox kode_prodi;
+        private System.Windows.Forms.TextBox nama_prodi;
         private System.Windows.Forms.TextBox biaya_kuliah;
-        private System.Windows.Forms.TextBox textBox4;
-        private System.Windows.Forms.TextBox textBox5;
+        private System.Windows.Forms.TextBox tbPotongan;
+        private System.Windows.Forms.TextBox tbTotal;
         private System.Windows.Forms.Button SubmitDaftar;
         private System.Windows.Forms.Button ClearDaftar;
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.RadioButton radioButton3;
-        private System.Windows.Forms.RadioButton radioButton2;
-        private System.Windows.Forms.RadioButton radioButton1;
+        private System.Windows.Forms.RadioButton rbC;
+        private System.Windows.Forms.RadioButton rbB;
+        private System.Windows.Forms.RadioButton rbA;
+        private System.Windows.Forms.Button cariNPM;
+        private System.Windows.Forms.TextBox biaya;
+        private System.Windows.Forms.TextBox potong;
+        private System.Windows.Forms.TextBox totall;
     }
 }

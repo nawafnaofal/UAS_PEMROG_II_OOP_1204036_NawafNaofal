@@ -40,80 +40,54 @@ namespace UAS_OOP_1204036
 
         private void SubmitMhs_Click(object sender, EventArgs e)
         {
-            if (tbNpm.Text != "" && tbNpm.TextLength == 7)
+            int i = 0;
+            if (tbNpm.Text != "" && int.TryParse(tbNpm.Text.ToString(), out i))
             {
-                if (NamaMhs.Text != "")
+                if (NamaMhs.Text != "" && !NamaMhs.Text.ToString().Any(char.IsDigit))
                 {
-                          
-                                
-                                    if (cbProdi.Text != "- Pilih Program Studi -")
-                                    {
-                                        string npm = tbNpm.Text;
-                                        string nama = NamaMhs.Text;                                        
-                                        string prodi = this.prodi;
+                    if (cbProdi.Text != "")
+                    {
+                        string sql = "INSERT INTO ms_mhs VALUES('"
+                                    + tbNpm.Text + "','"
+                                    + NamaMhs.Text + "','"
+                                    + cbProdi.SelectedValue + "')";
 
-                                        SqlConnection conn = new SqlConnection(@"Data Source=DESKTOP-7CON8MO;Initial Catalog=UAS;Integrated Security=True");
+                        UpdateDB(sql);
 
-                                        string sql = "insert into ms_mhs ([npm], [nama_mhs], " +
-                                            " [kode_prodi]) values(@npm,@nama_mhs,@kode_prodi)";
-
-                                        using (SqlConnection cnn = new SqlConnection(@"Data Source=DESKTOP-7CON8MO;Initial Catalog=UAS;Integrated Security=True"))
-                                        {
-                                            try
-                                            {
-                                                cnn.Open();
-
-                                                using (SqlCommand cmd = new SqlCommand(sql, cnn))
-                                                {
-                                                    cmd.Parameters.Add("@npm", SqlDbType.NVarChar).Value = npm;
-                                                    cmd.Parameters.Add("@nama_mhs", SqlDbType.NVarChar).Value = nama;
-                                                    cmd.Parameters.Add("@kode_prodi", SqlDbType.NVarChar).Value = prodi;
-
-                                                    int rowsAdded = cmd.ExecuteNonQuery();
-                                                    if (rowsAdded > 0)
-                                                        MessageBox.Show("Data berhasil disimpan");
-                                                    else
-                                                        MessageBox.Show("Tidak ada data yang disimpan");
-
-
-
-                                                }
-                                            }
-                                            catch (Exception ex)
-                                            {
-                                                MessageBox.Show("ERROR:" + ex.Message);
-                                            }
-                                        }
-
-                                    }
-                                    else
-                                    {
-                                        MessageBox.Show
-                                                    ("Prodi belum diisi!",
-                                                    "Informasi Data Submit",
-                                                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                                    }
-                                
-                            
-                        
-                        
-                        
-
+                        this.Dispose();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Kolom prodi mahasiswa belum dipilih!", "Informasi", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
                 }
                 else
                 {
-                    MessageBox.Show
-                                ("Nama belum diisi!",
-                                "Informasi Data Submit",
-                                MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show("Kolom nama mahasiswa tidak boleh kosong!", "Informasi", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }
             else
             {
-                MessageBox.Show
-                            ("NPM belum diisi!",
-                            "Informasi Data Submit",
-                            MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Kolom NPM mahasiswa tidak boleh kosong !", "Informasi", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+        }
+
+        private void UpdateDB(string cmd)
+        {
+            try
+            {
+                SqlConnection myConnection = new SqlConnection(@"Data Source=DESKTOP-7CON8MO;Initial Catalog=UAS;Integrated Security=True");
+                myConnection.Open();
+                SqlCommand myCommand = new SqlCommand();
+                myCommand.Connection = myConnection;
+                myCommand.CommandText = cmd;
+                myCommand.ExecuteNonQuery();
+
+                MessageBox.Show("Basisdata berhasil diperbarui", "Informasi", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            catch (Exception z)
+            {
+                MessageBox.Show(z.ToString(), "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -127,6 +101,22 @@ namespace UAS_OOP_1204036
             tbNpm.Text = null;
             NamaMhs.Text = null;
             cbProdi.SelectedIndex = 0;
+        }
+
+        private void tbNpm_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void NamaMhs_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsLetter(e.KeyChar) && !char.IsControl(e.KeyChar) && !char.IsWhiteSpace(e.KeyChar))
+            {
+                e.Handled= true;
+            }
         }
     }
 }

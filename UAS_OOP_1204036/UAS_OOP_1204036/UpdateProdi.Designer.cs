@@ -31,7 +31,6 @@
             this.label1 = new System.Windows.Forms.Label();
             this.dgUpdateProdi = new System.Windows.Forms.DataGridView();
             this.UpdatePrd = new System.Windows.Forms.Button();
-            this.DeleteProdi = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgUpdateProdi)).BeginInit();
             this.SuspendLayout();
             // 
@@ -55,7 +54,7 @@
             // 
             // UpdatePrd
             // 
-            this.UpdatePrd.Location = new System.Drawing.Point(216, 273);
+            this.UpdatePrd.Location = new System.Drawing.Point(266, 272);
             this.UpdatePrd.Name = "UpdatePrd";
             this.UpdatePrd.Size = new System.Drawing.Size(75, 23);
             this.UpdatePrd.TabIndex = 7;
@@ -63,22 +62,11 @@
             this.UpdatePrd.UseVisualStyleBackColor = true;
             this.UpdatePrd.Click += new System.EventHandler(this.UpdatePrd_Click);
             // 
-            // DeleteProdi
-            // 
-            this.DeleteProdi.Location = new System.Drawing.Point(330, 273);
-            this.DeleteProdi.Name = "DeleteProdi";
-            this.DeleteProdi.Size = new System.Drawing.Size(75, 23);
-            this.DeleteProdi.TabIndex = 8;
-            this.DeleteProdi.Text = "Delete";
-            this.DeleteProdi.UseVisualStyleBackColor = true;
-            this.DeleteProdi.Click += new System.EventHandler(this.DeleteProdi_Click);
-            // 
             // UpdateProdi
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(646, 340);
-            this.Controls.Add(this.DeleteProdi);
             this.Controls.Add(this.UpdatePrd);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.dgUpdateProdi);
@@ -96,6 +84,5 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.DataGridView dgUpdateProdi;
         private System.Windows.Forms.Button UpdatePrd;
-        private System.Windows.Forms.Button DeleteProdi;
     }
 }

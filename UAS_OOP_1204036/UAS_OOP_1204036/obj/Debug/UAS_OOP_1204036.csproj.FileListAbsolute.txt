@@ -16,3 +16,5 @@ C:\Users\nawaf\source\repos\UAS_OOP_1204036\UAS_OOP_1204036\obj\Debug\UAS_OOP_12
 C:\Users\nawaf\source\repos\UAS_OOP_1204036\UAS_OOP_1204036\obj\Debug\UAS_OOP_1204036.ViewMahasiswa.resources
 C:\Users\nawaf\source\repos\UAS_OOP_1204036\UAS_OOP_1204036\obj\Debug\UAS_OOP_1204036.UpdateProdi.resources
 C:\Users\nawaf\source\repos\UAS_OOP_1204036\UAS_OOP_1204036\obj\Debug\UAS_OOP_1204036.UpdateMahasiswa.resources
+C:\Users\nawaf\source\repos\UAS_OOP_1204036\UAS_OOP_1204036\obj\Debug\UAS_OOP_1204036.ViewDaftarUlang.resources
+C:\Users\nawaf\source\repos\UAS_OOP_1204036\UAS_OOP_1204036\obj\Debug\UAS_OOP_1204036.UpdateDaftarUlang.resources

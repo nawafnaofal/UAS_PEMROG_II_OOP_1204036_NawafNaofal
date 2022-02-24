@@ -59,15 +59,37 @@ namespace UAS_OOP_1204036
 
         private void SubmitProdi_Click(object sender, EventArgs e)
         {
-           
 
-            string myCmd = "INSERT INTO ms_prodi VALUES('"
-            + kode_prodi.Text + "','"
-            + nama_prodi.Text + "','"
-            + singkatan.Text + "','"
-            + biaya_kuliah.Text + "')";
+            int i;
+            if (nama_prodi.Text != "" && !nama_prodi.Text.ToString().Any(char.IsDigit))
+            {
+                if (singkatan.Text != "")
+                {
+                    if (biaya_kuliah.Text != "" && int.TryParse(biaya_kuliah.Text.ToString(), out i))
+                    {
+                        string sql = "INSERT INTO ms_prodi VALUES('"
+                                + kode_prodi.Text + "','"
+                                + nama_prodi.Text + "','"
+                                + singkatan.Text + "','"
+                                + biaya_kuliah.Text + "')";
 
-            UpdateDB(myCmd);
+                        UpdateDB(sql);
+                        this.Dispose();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Kolom biaya kuliah tidak boleh kosong !", "Informasi", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Kolom singkatan Prodi tidak boleh kosong!", "Informasi", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+            }
+            else
+            {
+                MessageBox.Show("Kolom nama Prodi tidak boleh kosong ", "Informasi", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
         }
 
         private void UpdateDB(string cmd)
@@ -100,6 +122,7 @@ namespace UAS_OOP_1204036
 
         private void biaya_kuliah_TextChanged(object sender, EventArgs e)
         {
+
             if (string.IsNullOrWhiteSpace(biaya_kuliah .Text))
             {
                 rupiah = 0;
@@ -109,6 +132,32 @@ namespace UAS_OOP_1204036
                 rupiah = decimal.Parse(biaya_kuliah .Text);
             }
             indo.Text = rupiah.ToString("C",CultureInfo.CreateSpecificCulture("id-ID"));
+
+            
+        }
+
+        private void biaya_kuliah_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void nama_prodi_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsLetter(e.KeyChar) && !char.IsControl(e.KeyChar) && !char.IsWhiteSpace(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void singkatan_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsLetter(e.KeyChar) && !char.IsControl(e.KeyChar) && !char.IsWhiteSpace(e.KeyChar))
+            {
+                e.Handled = true;
+            }
         }
     }
 }

@@ -70,6 +70,7 @@
             this.nama_prodi.Name = "nama_prodi";
             this.nama_prodi.Size = new System.Drawing.Size(175, 20);
             this.nama_prodi.TabIndex = 2;
+            this.nama_prodi.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.nama_prodi_KeyPress);
             // 
             // singkatan
             // 
@@ -77,6 +78,7 @@
             this.singkatan.Name = "singkatan";
             this.singkatan.Size = new System.Drawing.Size(175, 20);
             this.singkatan.TabIndex = 3;
+            this.singkatan.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.singkatan_KeyPress);
             // 
             // biaya_kuliah
             // 
@@ -85,6 +87,7 @@
             this.biaya_kuliah.Size = new System.Drawing.Size(175, 20);
             this.biaya_kuliah.TabIndex = 4;
             this.biaya_kuliah.TextChanged += new System.EventHandler(this.biaya_kuliah_TextChanged);
+            this.biaya_kuliah.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.biaya_kuliah_KeyPress);
             // 
             // label2
             // 

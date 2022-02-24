@@ -118,6 +118,7 @@
             this.tbNpm.Name = "tbNpm";
             this.tbNpm.Size = new System.Drawing.Size(142, 20);
             this.tbNpm.TabIndex = 16;
+            this.tbNpm.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbNpm_KeyPress);
             // 
             // NamaMhs
             // 
@@ -125,6 +126,7 @@
             this.NamaMhs.Name = "NamaMhs";
             this.NamaMhs.Size = new System.Drawing.Size(142, 20);
             this.NamaMhs.TabIndex = 17;
+            this.NamaMhs.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.NamaMhs_KeyPress);
             // 
             // cbProdi
             // 

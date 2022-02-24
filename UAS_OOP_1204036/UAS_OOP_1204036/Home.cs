@@ -67,5 +67,19 @@ namespace UAS_OOP_1204036
             UpdateMahasiswa.MdiParent = this;
             UpdateMahasiswa.Show();
         }
+
+        private void reportDaftarUlang_Click(object sender, EventArgs e)
+        {
+            ViewDaftarUlang ViewDaftarUlang = new ViewDaftarUlang();
+            ViewDaftarUlang.MdiParent = this;
+            ViewDaftarUlang.Show();
+        }
+
+        private void updateDaftarUlangToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            UpdateDaftarUlang UpdateDaftarUlang = new UpdateDaftarUlang();
+            UpdateDaftarUlang.MdiParent = this;
+            UpdateDaftarUlang.Show();
+        }
     }
 }
